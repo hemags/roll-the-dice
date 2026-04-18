@@ -13,7 +13,10 @@ class DiceApp {
         this.diceElement = document.getElementById('dice');
         this.rollButton = document.getElementById('rollButton');
         this.dots = document.querySelectorAll('.dot');
+        this.historyList = document.getElementById('historyList');
+        this.totalRollsElement = document.getElementById('totalRolls');
         this.isRolling = false;
+        this.rollHistory = [];
 
         // Standard dice face patterns (dot positions)
         this.dicePatterns = {
@@ -81,11 +84,46 @@ class DiceApp {
             this.rollButton.disabled = false;
             this.isRolling = false;
 
+            // Add to history
+            this.addToHistory(finalResult);
+
             // Dispatch custom event for external integrations
             window.dispatchEvent(new CustomEvent('diceRolled', { 
                 detail: { value: finalResult } 
             }));
         }, 700);
+    }
+
+    addToHistory(value) {
+        this.rollHistory.unshift({
+            value: value,
+            time: new Date().toLocaleTimeString()
+        });
+
+        // Update counter
+        this.totalRollsElement.textContent = this.rollHistory.length;
+
+        // Remove empty state if exists
+        const emptyState = this.historyList.querySelector('.empty-state');
+        if (emptyState) {
+            emptyState.remove();
+        }
+
+        // Create history item
+        const historyItem = document.createElement('div');
+        historyItem.className = 'history-item';
+        historyItem.innerHTML = `
+            <span class="roll-number">🎲 ${value}</span>
+            <span class="roll-time">${new Date().toLocaleTimeString()}</span>
+        `;
+
+        // Insert at the top
+        this.historyList.insertBefore(historyItem, this.historyList.firstChild);
+
+        // Keep only last 50 rolls
+        while (this.historyList.children.length > 50) {
+            this.historyList.removeChild(this.historyList.lastChild);
+        }
     }
 }
 

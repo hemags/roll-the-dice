@@ -8,25 +8,43 @@
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Roll The Dice</h1>
-        
-        <div class="dice" id="dice">
-            <div class="dot" id="dot1"></div>
-            <div class="dot" id="dot2"></div>
-            <div class="dot" id="dot3"></div>
-            <div class="dot" id="dot4"></div>
-            <div class="dot" id="dot5"></div>
-            <div class="dot" id="dot6"></div>
-            <div class="dot" id="dot7"></div>
-            <div class="dot" id="dot8"></div>
-            <div class="dot" id="dot9"></div>
+    <div class="app-layout">
+        <!-- History Panel (Left Sidebar) -->
+        <div class="history-panel">
+            <h2>📜 Roll History</h2>
+            <div id="historyList" class="history-list">
+                <div class="empty-state">
+                    No rolls yet. <br>Start rolling the dice!
+                </div>
+            </div>
+            <div class="history-stats">
+                <span>Total Rolls: <strong id="totalRolls">0</strong></span>
+            </div>
         </div>
-        
-        <button class="roll-button" id="rollButton">Roll Dice</button>
-        
-        <div class="footer">
-            Click the button or press Spacebar to roll 1-6
+
+        <!-- Main Dice Roller Panel -->
+        <div class="main-panel">
+            <div class="container">
+                <h1>Roll The Dice</h1>
+                
+                <div class="dice" id="dice">
+                    <div class="dot" id="dot1"></div>
+                    <div class="dot" id="dot2"></div>
+                    <div class="dot" id="dot3"></div>
+                    <div class="dot" id="dot4"></div>
+                    <div class="dot" id="dot5"></div>
+                    <div class="dot" id="dot6"></div>
+                    <div class="dot" id="dot7"></div>
+                    <div class="dot" id="dot8"></div>
+                    <div class="dot" id="dot9"></div>
+                </div>
+                
+                <button class="roll-button" id="rollButton">Roll Dice</button>
+                
+                <div class="footer">
+                    Click the button or press Spacebar to roll 1-6
+                </div>
+            </div>
         </div>
     </div>
 

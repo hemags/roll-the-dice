@@ -15,11 +15,101 @@ License: MIT
 body {
     background-color: #f8fafc;
     min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    min-height: 100vh;
+}
+
+/* History Panel Styles */
+.history-panel {
+    background: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+}
+
+.history-panel h2 {
+    color: #1e293b;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.history-item {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.history-item .roll-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+.history-item .roll-time {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.empty-state {
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+.history-stats {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+    color: #475569;
+    font-size: 0.95rem;
+}
+
+/* Main Panel Styles */
+.main-panel {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     padding: 20px;
+}
+
+.container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
 }
 
 .container {
@@ -127,6 +217,29 @@ h1 {
 }
 
 /* Responsive Design */
+@media (max-width: 768px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }
+
+    .history-panel {
+        order: 2;
+        border-right: none;
+        border-top: 1px solid #e2e8f0;
+        max-height: 300px;
+    }
+
+    .history-list {
+        max-height: 180px;
+    }
+
+    .main-panel {
+        order: 1;
+        padding: 30px 20px;
+    }
+}
+
 @media (max-width: 480px) {
     h1 {
         font-size: 2rem;
